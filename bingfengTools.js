@@ -19,17 +19,32 @@
     var parser = new DOMParser(); //解析器
     var doc = null;
     var NextURL = null; //下一步的URL
-
+    var is_logging = false; //是否登入
 
 
     window.addEventListener('load', function () {//在網頁加載完成執行
-        const $list = document.getElementById('Info');
-        // $list.addEventListener('click', (e) => { //本來想寫按下解鎖隱藏文才執行的 但網頁重定向問題未解決 未來再看看怎麼搞
 
-        // })
-        var unlock_hide_url = $list.href
-        console.log($list.href); //解鎖文章的url
-        Unlocked_article(unlock_hide_url)
+        is_logging = document.querySelector('#um > p:nth-child(2) > strong > a')
+        if (is_logging) {
+            console.log('冰楓帳號已登入，可以開始解鎖文章')
+        } else {
+            console.log('冰楓帳號未登入，無法使用解鎖文章功能')
+        }
+
+        if (is_logging) {
+            const target = document.getElementById('Info');
+            if (target) {
+                console.log("檢測到文章可以解鎖")
+                var unlock_hide_url = target.href
+                console.log(target.href); //解鎖文章的url
+                Unlocked_article(unlock_hide_url)
+            }
+            // $list.addEventListener('click', (e) => { //本來想寫按下解鎖隱藏文才執行的 但網頁重定向問題未解決 未來再看看怎麼搞
+
+            // })
+
+        }
+
 
 
 
